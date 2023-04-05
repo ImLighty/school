@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 #define N 10
 
@@ -10,34 +12,9 @@ void askNumbers(int v[], int dim)
   for (int i = 0; i < dim; i++) cin >> v[i];
 }
 
-void swap(int &a, int &b)
+void fillNumbers(int v[], int dim)
 {
-  int tmp = a;
-  a = b;
-  b = tmp;
-}
-
-void partitionArray(int numbers[], int left, int right, int dim, int x)
-{
-  while (left < right)
-  {
-    if (numbers[left] > x)
-    {
-      while (!(numbers[right] < x))
-        right--;
-      if (left < right)
-        swap(numbers[left], numbers[right]);
-    }
-    else if (numbers[right] < x)
-    {
-      while (numbers[left] <= x)
-        left++;
-      if (left < right)
-        swap(numbers[left], numbers[right]);
-    }
-    left++;
-    right--;
-  }
+  for (int i = 0; i < dim; i++) v[i] = rand() % 101;
 }
 
 void showNumbers(int v[], int dim)
@@ -47,12 +24,38 @@ void showNumbers(int v[], int dim)
   cout << endl;
 }
 
+void swap(int &a, int &b)
+{
+  int tmp = a;
+  a = b;
+  b = tmp;
+}
+
+void partitionArray(int numbers[], int left, int right, int dim, int x)
+{
+  while (numbers[left] < x)
+    left++;
+  while (numbers[right] >= x)
+    right--;
+  while (left < right)
+  {
+    int tmp = numbers[left];
+    numbers[left] = numbers[right];
+    numbers[right] = tmp;
+    while (numbers[left] < x)
+      left++;
+    while (numbers[right] >= x)
+      right--;
+  }
+}
+
 int main()
 {
   int x, numbers[N];
   cout << "Type an X number -> ";
   cin >> x;
-  askNumbers(numbers, N);
-  partitionArray(numbers, N, 0, N - 1, x);
+  srand(time(NULL));
+  fillNumbers(numbers, N);
+  partitionArray(numbers, 0, N - 1, N, x);
   showNumbers(numbers, N);
 }
