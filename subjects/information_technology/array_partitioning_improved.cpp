@@ -10,26 +10,34 @@ void askNumbers(int v[], int dim)
   for (int i = 0; i < dim; i++) cin >> v[i];
 }
 
-void partitionArray(int numbers[], int dim, int x)
+void swap(int &a, int &b)
 {
-  int biggerThanX[dim], smallerThanX[dim], smaller = 0, bigger = 0;
-  for (int i = 0; i < dim; i++)
+  int tmp = a;
+  a = b;
+  b = tmp;
+}
+
+void partitionArray(int numbers[], int left, int right, int dim, int x)
+{
+  while (left < right)
   {
-    if (numbers[i] >= x)
+    if (numbers[left] > x)
     {
-      biggerThanX[bigger] = numbers[i];
-      bigger++;
+      while (!(numbers[right] < x))
+        right--;
+      if (left < right)
+        swap(numbers[left], numbers[right]);
     }
-    else
+    else if (numbers[right] < x)
     {
-      smallerThanX[smaller] = numbers[i];
-      smaller++;
+      while (numbers[left] <= x)
+        left++;
+      if (left < right)
+        swap(numbers[left], numbers[right]);
     }
+    left++;
+    right--;
   }
-  for (int i = 0; i < smaller; i++)
-    numbers[i] = smallerThanX[i];
-  for (int i = smaller; i < dim; i++)
-    numbers[i] = biggerThanX[i];
 }
 
 void showNumbers(int v[], int dim)
@@ -45,6 +53,6 @@ int main()
   cout << "Type an X number -> ";
   cin >> x;
   askNumbers(numbers, N);
-  partitionArray(numbers, N, x);
+  partitionArray(numbers, N, 0, N - 1, x);
   showNumbers(numbers, N);
 }
