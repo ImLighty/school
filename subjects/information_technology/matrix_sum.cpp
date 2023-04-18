@@ -11,21 +11,13 @@ int main()
   cout << "The two matrixes are " << R << "x" << C << endl;
   cout << "Enter the elements of the first matrix: " << endl;
   for (int i = 0; i < R; i++)
-  {
     for (int j = 0; j < C; j++)
-    {
       cin >> m1[i][j];
-    }
-  }
 
   cout << "Enter the elements of the second matrix: " << endl;
   for (int i = 0; i < R; i++)
-  {
     for (int j = 0; j < C; j++)
-    {
       cin >> m2[i][j];
-    }
-  }
 
   cout << "The sum of the two matrices is: " << endl;
   for (int i = 0; i < R; i++)
