@@ -37,6 +37,8 @@ int main()
     cout << "Character found!" << endl;
   else
     cout << "Character not found" << endl;
+  
+  
   if (isdigit(s1[2]) != 0)
     cout << "Third character in s1 is a digit" << endl;
   else
