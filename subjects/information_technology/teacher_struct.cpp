@@ -1,41 +1,35 @@
 #include <iostream>
+#include <cstring>
 
 #define MAX 100
 
 using namespace std;
 
-struct teacher
+struct Teacher
 {
-  char first_name[MAX+1], last_name[MAX+1], fiscal_code[MAX+1];
+  char firstName[MAX+1], lastName[MAX+1], fiscalCode[MAX+1];
   char subject[MAX+1];
-  bool does_have_degree;
-  int age_of_service, age;
+  bool doesHaveDegree;
+  int ageOfService, age;
 };
 
 int main()
 {
-  teacher t;
-  cout << "Insert first name: ";
-  cin.getline(t.first_name, MAX+1);
-  cout << "Insert last name: ";
-  cin.getline(t.last_name, MAX+1);
-  cout << "Insert fiscal code: ";
-  cin.getline(t.fiscal_code, MAX+1);
-  cout << "Insert subject: ";
-  cin.getline(t.subject, MAX+1);
-  cout << "Insert whethever if does have a degree or not (1/0): ";
-  cin >> t.does_have_degree;
-  cout << "Insert age of service: ";
-  cin >> t.age_of_service;
-  cout << "Insert age: ";
-  cin >> t.age;
+  Teacher t;
+  strcpy(t.firstName, "John"); // strcpy(dest, src)
+  strcpy(t.lastName, "Doe");
+  strcpy(t.fiscalCode, "ABCDEF12G34H567I");
+  strcpy(t.subject, "Math");
+  t.doesHaveDegree = true;
+  t.ageOfService = 10;
+  t.age = 30;
 
-  cout << "First name: " << t.first_name << endl;
-  cout << "Last name: " << t.last_name << endl;
-  cout << "Fiscal code: " << t.fiscal_code << endl;
+  cout << "First name: " << t.firstName << endl;
+  cout << "Last name: " << t.lastName << endl;
+  cout << "Fiscal code: " << t.fiscalCode << endl;
   cout << "Subject: " << t.subject << endl;
-  cout << "Does have degree? " << t.does_have_degree << endl;
-  cout << "Age of service: " << t.age_of_service << endl;
+  cout << "Does have degree? " << t.doesHaveDegree << endl;
+  cout << "Age of service: " << t.ageOfService << endl;
   cout << "Age: " << t.age << endl;
 
   return 0;
