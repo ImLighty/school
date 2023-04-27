@@ -4,23 +4,23 @@
 
 using namespace std;
 
-struct city
+struct City
 {
     char name[MAX + 1];
-    int current_population;
-    int last_year_population;
+    int currentPopulation;
+    int lastYearPopulation;
 };
 
 int main()
 {
-    city c;
+    City c;
     cout << "Insert city name: ";
     cin >> c.name;
     cout << "Insert current population: ";
-    cin >> c.current_population;
+    cin >> c.currentPopulation;
     cout << "Insert last year population: ";
-    cin >> c.last_year_population;
-    cout << "The increment of population is: " << c.current_population - c.last_year_population << endl;
-    cout << "The increment of population is: " << (c.current_population - c.last_year_population) / c.last_year_population * 100 << "%" << endl;
+    cin >> c.lastYearPopulation;
+    cout << "The increment of population is: " << c.currentPopulation - c.lastYearPopulation << endl;
+    cout << "The increment of population is: " << (c.currentPopulation - c.lastYearPopulation) / c.lastYearPopulation * 100 << "%" << endl;
     return 0;
 }
