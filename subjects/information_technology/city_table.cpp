@@ -42,12 +42,18 @@ int main()
   City cities[n];
   for (int i = 0; i < n; i++)
   {
-    cout << "Getting information about city n." << i+1 << "..." << endl;
+    cout << "Getting information about city n." << i + 1 << "..." << endl;
     promptCity(cities[i]);
     populationIncrease(cities[i]);
   }
-  for (int i = 0; i < n; i++) {
-    showCity(cities[i]);
-    cout << cities[i].name << "'s population " << (populationIncrease(cities[i]) ? "increased" : "decreased") << endl;
+  char cityName[MAX_CHARS + 1];
+  cout << "What city do you want to find? "; cin >> cityName;
+  for (int i = 0; i < n; i++)
+  {
+    if (strcmp(cityName, cities[i].name) == 0)
+    {
+      showCity(cities[i]);
+      break;
+    }
   }
 }
