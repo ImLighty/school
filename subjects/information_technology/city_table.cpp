@@ -12,23 +12,6 @@ struct City
   double increasePercentage;
 };
 
-void bubbleSortCities(City v[], int dim)
-{
-  City swap;
-  for (int steps = 0; steps < dim - 1; steps++)
-  {
-    for (int i = 0; i < dim - 1; i++)
-    {
-      if (v[i].increase > v[i + 1].increase)
-      {
-        swap = v[i];
-        v[i] = v[i + 1];
-        v[i + 1] = swap;
-      }
-    }
-  }
-}
-
 void promptCity(City &city)
 {
   cout << "What's the city's name? "; cin >> city.name;
@@ -38,7 +21,11 @@ void promptCity(City &city)
 
 void showCity(City city)
 {
-  cout << city.name << "\t" << city.population << "\t" << city.populationLastYear << "\t" << city.increase << "\t" << city.increasePercentage << endl;
+  cout << "City: " << city.name << endl;
+  cout << "Population: " << city.population << endl;
+  cout << "Population last year: " << city.populationLastYear << endl;
+  cout << "Population increase: " << city.increase << endl;
+  cout << "Population increase percentage: " << city.increasePercentage << "%" << endl;
 }
 
 bool populationIncrease(City &city)
@@ -59,8 +46,8 @@ int main()
     promptCity(cities[i]);
     populationIncrease(cities[i]);
   }
-  bubbleSortCities(cities, n);
-  cout << "Name\tPopulation\tPopulation last year\tIncrease\tIncrease percentage" << endl;
-  for (int i = 0; i < n; i++)
+  for (int i = 0; i < n; i++) {
     showCity(cities[i]);
+    cout << cities[i].name << "'s population " << (populationIncrease(cities[i]) ? "increased" : "decreased") << endl;
+  }
 }
