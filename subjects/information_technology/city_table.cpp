@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <cctype>
 
 #define MAX_CHARS 50
 
@@ -35,6 +36,13 @@ bool populationIncrease(City &city)
   return city.increase > 0;
 }
 
+void lowerString(char dest[], char src[], int dim)
+{
+  strcpy(dest, src);
+  for (int i = 0; i < dim; i++)
+    dest[i] = tolower(dest[i]);
+}
+
 int main()
 {
   int n;
@@ -50,7 +58,10 @@ int main()
   cout << "What city do you want to find? "; cin >> cityName;
   for (int i = 0; i < n; i++)
   {
-    if (strcmp(cityName, cities[i].name) == 0)
+    char unsensitiveInput[MAX_CHARS + 1], unsensitiveCity[MAX_CHARS + 1];
+    lowerString(unsensitiveInput, cityName, MAX_CHARS + 1);
+    lowerString(unsensitiveCity, cities[i].name, MAX_CHARS + 1);
+    if (strcmp(unsensitiveInput, unsensitiveCity) == 0)
     {
       showCity(cities[i]);
       break;
