@@ -1,70 +1,75 @@
 #include <iostream>
 #include <cstring>
-
-#define MAX 2000
-
+#define N 1000
 using namespace std;
 
-void decrypt()
-{
-  char str[MAX];
-  int key;
-  cout << "Enter the string: ";
-  cin.getline(str, MAX);
-  cout << "Enter the key/shift: ";
-  cin >> key;
-  for (int i = 0; i < strlen(str); i++)
-  {
-    if (str[i] >= 'a' && str[i] <= 'z')
-      str[i] = (str[i] - 'a' + key) % 26 + 'a';
-    else if (str[i] >= 'A' && str[i] <= 'Z')
-      str[i] = (str[i] - 'A' + key) % 26 + 'A';
-  }
-  cout << "The encrypted string is: " << str << endl;
-}
-
-void encrypt()
-{
-  char str[MAX];
-  int key;
-  cout << "Enter the encrypted string: ";
-  cin.getline(str, MAX);
-  cout << "Enter the key/shift: ";
-  cin >> key;
-  for (int i = 0; i < strlen(str); i++)
-  {
-    if (str[i] >= 'a' && str[i] <= 'z')
-      str[i] = (str[i] - 'a' - key + 26) % 26 + 'a';
-    else if (str[i] >= 'A' && str[i] <= 'Z')
-      str[i] = (str[i] - 'A' - key + 26) % 26 + 'A';
-  }
-  cout << "The decrypted string is: " << str << endl;
-}
-
-void menu()
-{
-  int choice;
-  cout << "Pick your choice:\n1. Encrypt\n2. Decrypt\n3. Exit\n-> ";
-  cin >> choice;
-  cin.ignore();
-  switch (choice)
-  {
-  case 1:
-    encrypt();
-    break;
-  case 2:
-    decrypt();
-    break;
-  case 3:
-    exit(0);
-  default:
-    cout << "ERROR!\n";
-  }
-}
+// this code hasn't been written by just me, so if you see terrible code, that's why
 
 int main()
 {
-  while (true)
-    menu();
-  return 0;
+  char dec[N], base[N];
+  int n, scelta;
+  cout << "1. Encode" << endl;
+  cout << "2. Decode" << endl;
+  cin >> scelta;
+  if (scelta == 2)
+  {
+    cout << "Inserire una parola da decifrare" << endl;
+    cin >> dec;
+    for (int i = 0; dec[i] != '\0'; i++)
+    {
+      while ((dec[i] > 122 || (dec[i] < 97 && dec[i] > 90) || dec[i] < 65) && dec[i] != '\0')
+      {
+        for (int i = 0; dec[i] != '\0'; i++)
+          dec[i] = '\0';
+        cout << "la parola deve contenere solo lettere" << endl;
+        cin >> dec;
+      }
+    }
+    strncpy(base, dec, N);
+    for (n = 0; n < 26; n++)
+    {
+      strncpy(dec, base, N);
+      for (int i = 0; dec[i] != '\0'; i++)
+      {
+        if ((dec[i] - n < 65 && dec[i] < 91) || (dec[i] - n < 97 && dec[i] > 96))
+        {
+          dec[i] = dec[i] + 26 - n;
+        }
+        else
+          dec[i] -= n;
+      }
+      cout << "Parola decifrata = " << dec << " chiave= " << n << endl;
+    }
+  }
+  else
+  {
+    cout << "inserire la parola da codificare" << endl;
+    cin >> dec;
+    for (int i = 0; dec[i] != '\0'; i++)
+    {
+      while ((dec[i] > 122 || (dec[i] < 97 && dec[i] > 90) || dec[i] < 65) && dec[i] != '\0')
+      {
+        for (int i = 0; dec[i] != '\0'; i++)
+          dec[i] = '\0';
+        cout << "la parola deve contenere solo lettere" << endl;
+        cin >> dec;
+      }
+    }
+    strncpy(base, dec, N);
+    for (n = 0; n < 26; n++)
+    {
+      strncpy(dec, base, N);
+      for (int i = 0; dec[i] != '\0'; i++)
+      {
+        if ((dec[i] + n > 122 && dec[i] > 97) || (dec[i] + n > 90 && dec[i] <= 90))
+        {
+          dec[i] = dec[i] - 26 + n;
+        }
+        else
+          dec[i] += n;
+      }
+      cout << "Parola cifrata = " << dec << " chiave= " << n << endl;
+    }
+  }
 }
