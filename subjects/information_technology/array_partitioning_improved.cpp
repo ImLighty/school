@@ -9,18 +9,21 @@ using namespace std;
 void askNumbers(int v[], int dim)
 {
   cout << "Type " << dim << " numbers separated by the space, then press ENTER -> ";
-  for (int i = 0; i < dim; i++) cin >> v[i];
+  for (int i = 0; i < dim; i++)
+    cin >> v[i];
 }
 
 void fillNumbers(int v[], int dim)
 {
-  for (int i = 0; i < dim; i++) v[i] = rand() % 101;
+  for (int i = 0; i < dim; i++)
+    v[i] = rand() % 101;
 }
 
 void showNumbers(int v[], int dim)
 {
   cout << "Numbers: ";
-  for (int i = 0; i < dim; i++) cout << v[i] << " ";
+  for (int i = 0; i < dim; i++)
+    cout << v[i] << " ";
   cout << endl;
 }
 
